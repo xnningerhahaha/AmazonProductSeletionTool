@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeAll, afterAll } from 'vitest';
+import { describe, it, expect, beforeAll } from 'vitest';
 import express, { Express } from 'express';
 import cors from 'cors';
 import analyzeRouter from './analyze';
@@ -17,7 +17,7 @@ describe('Analyze API Integration Tests', () => {
 
   describe('POST /api/analyze', () => {
     it('should return 400 for invalid ASIN format', async () => {
-      const response = await fetch(`http://localhost:5000${BASE_URL}`, {
+      await fetch(`http://localhost:5000${BASE_URL}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ asin: 'INVALID' })
