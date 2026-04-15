@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Build output
+dist/
+*/dist/
+build/
+
+# Environment files (contains secrets!)
+.env
+*/.env
+backend/.env
+frontend/.env
+
+# Data files (runtime generated)
+data/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+
+# IDE
+.vscode/
