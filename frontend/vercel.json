@@ -4,5 +4,15 @@
   "framework": "vite",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "installCommand": "npm install"
+  "installCommand": "npm install",
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "http://54.253.14.188/api/$1"
+    },
+    {
+      "source": "/health",
+      "destination": "http://54.253.14.188/health"
+    }
+  ]
 }
