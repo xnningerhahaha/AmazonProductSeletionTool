@@ -250,4 +250,4 @@ export const translations = {
   } as const,
 }
 
-export type Translations = typeof translations.zh
+export type Translations = typeof translations.zh | typeof translations.en
