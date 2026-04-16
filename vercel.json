@@ -1,19 +1,26 @@
 {
   "version": 2,
   "name": "amazon-product-analyzer",
-  "builds": [
+  "framework": "vite",
+  "buildCommand": "cd frontend && npm install && npm run build",
+  "outputDirectory": "frontend/dist",
+  "installCommand": "cd frontend && npm install",
+  "devCommand": "cd frontend && npm run dev",
+  "rewrites": [
     {
-      "src": "frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "frontend/dist"
-      }
+      "source": "/(.*)",
+      "destination": "/$1"
     }
   ],
-  "routes": [
+  "headers": [
     {
-      "src": "/(.*)",
-      "dest": "frontend/dist/$1"
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
     }
   ]
 }
