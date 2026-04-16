@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import AsinInput from './components/AsinInput';
 import AnalyzeButton from './components/AnalyzeButton';
+import LoadingSpinner from './components/LoadingSpinner';
 import ErrorMessage from './components/ErrorMessage';
 import ProductReport from './components/ProductReport';
 import { analyzeProduct, ApiError } from './services/api';
@@ -98,9 +99,14 @@ function App() {
 
           <AnalyzeButton
             onClick={handleAnalyze}
-            disabled={!isValid}
-            loading={loading}
+            disabled={!isValid || loading}
           />
+
+          {loading && (
+            <div className="mt-8">
+              <LoadingSpinner message={t.loadingMessage} />
+            </div>
+          )}
 
           {error && (
             <div className="mt-8 w-full max-w-2xl">
