@@ -2,6 +2,8 @@
 
 一个帮助卖家分析亚马逊产品市场潜力的工具，提供需求分析、价格分析和竞争分析。
 
+**在线演示**: https://amazon-product-seletion-tool.vercel.app/
+
 ## 快速开始
 
 ### 前置要求
