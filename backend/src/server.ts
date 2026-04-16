@@ -1,8 +1,8 @@
 import express, { Request, Response, NextFunction } from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
-import analyzeRouter from './routes/analyze'
-import statsRouter from './routes/stats'
+import analyzeRouter from './routes/analyze.js'
+import statsRouter from './routes/stats.js'
 
 // Load environment variables
 dotenv.config()
