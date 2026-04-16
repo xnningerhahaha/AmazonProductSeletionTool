@@ -1,7 +1,7 @@
 import { AnalyzeRequest, AnalyzeResponse } from '../types';
 
-// API基础URL配置
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+// API基础URL配置 - 如果环境变量未设置或为空，使用空字符串（相对路径）
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.trim() || '';
 
 /**
  * API错误类

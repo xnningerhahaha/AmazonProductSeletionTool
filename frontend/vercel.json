@@ -8,11 +8,7 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "http://54.253.14.188/api/$1"
-    },
-    {
-      "source": "/health",
-      "destination": "http://54.253.14.188/health"
+      "destination": "/api/$1"
     }
   ]
 }
