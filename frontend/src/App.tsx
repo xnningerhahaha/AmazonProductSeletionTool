@@ -18,7 +18,7 @@ function App() {
 
   // 记录页面访问
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5001'}/api/stats/visit`, {
+    fetch('https://api.amazonai.online/api/stats/visit', {
       method: 'POST',
     }).catch(() => {})
   }, []);
