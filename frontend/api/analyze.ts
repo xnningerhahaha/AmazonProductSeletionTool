@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
-const BACKEND_URL = 'http://54.253.14.188';
+const BACKEND_URL = 'https://api.amazonai.online';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // 设置 CORS 头
