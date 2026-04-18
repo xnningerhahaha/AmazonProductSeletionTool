@@ -1,7 +1,7 @@
 import { AnalyzeRequest, AnalyzeResponse } from '../types';
 
-// API基础URL配置 - 生产环境使用固定域名
-const API_BASE_URL = 'https://api.amazonai.online';
+// API基础URL配置 - 优先读取环境变量，fallback到生产域名
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://api.amazonai.online';
 
 /**
  * API错误类

@@ -18,7 +18,8 @@ function App() {
 
   // 记录页面访问
   useEffect(() => {
-    fetch('https://api.amazonai.online/api/stats/visit', {
+    const apiBase = import.meta.env.VITE_API_BASE_URL || 'https://api.amazonai.online'
+    fetch(`${apiBase}/api/stats/visit`, {
       method: 'POST',
     }).catch(() => {})
   }, []);
