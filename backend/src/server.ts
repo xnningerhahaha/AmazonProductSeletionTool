@@ -23,9 +23,22 @@ const app = express()
 const PORT = process.env.PORT || 5000
 const NODE_ENV = process.env.NODE_ENV || 'development'
 
-// CORS configuration - allow all origins for now
+// CORS configuration
+const allowedOrigins = [
+  'https://www.amazonai.online',
+  'https://amazonai.online',
+  ...(NODE_ENV === 'development' ? ['http://localhost:3000', 'http://localhost:5173'] : []),
+]
+
 const corsOptions = {
-  origin: true,
+  origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
+    // Allow requests with no origin (e.g. curl, mobile apps)
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true)
+    } else {
+      callback(new Error(`CORS: origin ${origin} not allowed`))
+    }
+  },
   credentials: true,
   optionsSuccessStatus: 200,
 }
