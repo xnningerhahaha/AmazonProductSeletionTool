@@ -13,7 +13,7 @@ interface DashboardData {
   conversionRate: string
 }
 
-const API = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5001'
+const API = 'https://api.amazonai.online'
 
 export default function AdminDashboard() {
   const [data, setData] = useState<DashboardData | null>(null)
