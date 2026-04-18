@@ -1,7 +1,7 @@
 import { AnalyzeRequest, AnalyzeResponse } from '../types';
 
-// API基础URL配置
-const API_BASE_URL = 'https://lakes-powered-entertainment-charms.trycloudflare.com';
+// API基础URL配置 - 使用环境变量
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5001';
 
 /**
  * API错误类
