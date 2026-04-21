@@ -4,7 +4,7 @@ import AnalyzeButton from './components/AnalyzeButton';
 import LoadingSpinner from './components/LoadingSpinner';
 import ErrorMessage from './components/ErrorMessage';
 import ProductReport from './components/ProductReport';
-import { analyzeProduct, ApiError } from './services/api';
+import { analyzeProduct, ApiError, DEMO_DATA } from './services/api';
 import { AnalyzeResponseData } from './types';
 import { useLanguage } from './i18n/LanguageContext';
 
@@ -52,6 +52,10 @@ function App() {
       setLoading(false);
     }
   }, [asin, isValid, t]);
+
+  const handleDemo = useCallback(() => {
+    if (DEMO_DATA.data) setReportData(DEMO_DATA.data);
+  }, []);
 
   const handleRetry = useCallback(() => {
     setError('');
@@ -108,6 +112,13 @@ function App() {
             onClick={handleAnalyze}
             disabled={!isValid || loading}
           />
+
+          <button
+            onClick={handleDemo}
+            className="text-sm text-gray-400 underline hover:text-gray-600"
+          >
+            {language === 'zh' ? '查看演示报告' : 'View Demo Report'}
+          </button>
 
           {loading && (
             <div className="mt-8">

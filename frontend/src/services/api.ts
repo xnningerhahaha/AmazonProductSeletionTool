@@ -3,6 +3,40 @@ import { AnalyzeRequest, AnalyzeResponse } from '../types';
 // API基础URL配置 - 优先读取环境变量，fallback到生产域名
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://api.amazonai.online';
 
+export const DEMO_DATA: AnalyzeResponse = {
+  success: true,
+  data: {
+    productInfo: {
+      asin: 'B08N5WRWNW',
+      title: 'SanDisk 128GB Ultra microSDXC UHS-I Memory Card',
+      imageUrl: 'https://via.placeholder.com/500x500.png?text=SanDisk+128GB',
+      price: 29.99,
+      currency: 'USD',
+      rating: 4.7,
+      reviewCount: 220603,
+      salesRank: 3,
+      category: 'Electronics',
+    },
+    analysis: {
+      conclusion: 'recommended',
+      overallScore: 72,
+      dimensions: {
+        demand: { score: 90, level: 'high', description: '销售排名极高，市场需求旺盛', descriptionEn: 'Very high sales rank, strong market demand' },
+        pricing: { score: 65, level: 'medium', profitMargin: '35%', description: '价格适中，利润空间合理', descriptionEn: 'Moderate price with reasonable margin' },
+        competition: { score: 55, level: 'medium', description: '竞争较激烈，需要差异化策略', descriptionEn: 'Competitive market, differentiation needed' },
+        monopoly: { score: 60, level: 'medium', description: '头部垄断度中等', descriptionEn: 'Moderate top-seller concentration' },
+        priceCollapse: { score: 70, level: 'medium', description: '价格较稳定', descriptionEn: 'Prices relatively stable' },
+        reviewDefect: { score: 80, level: 'low', description: '产品质量良好，缺陷率低', descriptionEn: 'Good product quality, low defect rate' },
+        adDependency: { score: 65, level: 'medium', description: '广告依赖度中等', descriptionEn: 'Moderate ad dependency' },
+        homogeneity: { score: 55, level: 'medium', description: '同质化程度较高', descriptionEn: 'High product homogeneity' },
+        survivalRate: { score: 45, level: 'medium', description: '新品存活率一般', descriptionEn: 'Average new product survival rate' },
+      },
+      warnings: ['竞争激烈，建议差异化切入'],
+      recommendations: ['建议从细分品类切入', '重点优化产品图片和标题'],
+    },
+  },
+};
+
 /**
  * API错误类
  */
