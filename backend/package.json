@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "build": "tsc",
+    "build": "tsc && node fix-esm.mjs",
     "start": "node dist/server.js",
     "postinstall": "npm run build",
     "test": "vitest --run",
