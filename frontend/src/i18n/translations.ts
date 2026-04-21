@@ -40,10 +40,10 @@ export const translations = {
     overallScore: '综合评分',
     vetoTriggered: '触发一票否决机制',
     conclusions: {
-      highly_recommended: { title: '强烈推荐', subtitle: '这是一个优质选品机会，市场条件良好' },
-      recommended: { title: '推荐', subtitle: '该产品有一定机会，但需要策略' },
-      neutral: { title: '谨慎做', subtitle: '机会一般，风险和收益并存' },
-      not_recommended: { title: '不推荐', subtitle: '该产品存在较大风险，建议谨慎' },
+      highly_recommended: { title: 'A级机会', subtitle: '强烈推荐，市场条件优质，值得重点投入' },
+      recommended: { title: 'B级机会', subtitle: '推荐，该产品有一定机会，但需要策略' },
+      neutral: { title: 'C级机会', subtitle: '谨慎做，机会一般，风险和收益并存' },
+      not_recommended: { title: 'D级机会', subtitle: '不推荐，该产品存在较大风险，建议放弃' },
     },
 
     // AnalysisDetails
