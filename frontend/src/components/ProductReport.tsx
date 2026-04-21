@@ -56,7 +56,7 @@ export default function ProductReport({ data, onNewAnalysis }: ProductReportProp
           onClick={handleUpgradeClick}
           className="px-6 py-2.5 bg-amber-500 hover:bg-amber-600 active:bg-amber-700 text-white font-semibold rounded-lg transition-colors shadow-md hover:shadow-lg text-sm"
         >
-          {language === 'zh' ? '🔓 获取深度报告 ¥1' : '🔓 Get Premium Report $1'}
+          {language === 'zh' ? '🔓 查看如何击败竞争对手 ¥1' : '🔓 How to Beat Competitors $1'}
         </button>
       </div>
 

@@ -29,6 +29,12 @@ function App() {
     setLoading(true);
     setError('');
     setReportData(null);
+    const apiBase = import.meta.env.VITE_API_BASE_URL || 'https://api.amazonai.online'
+    fetch(`${apiBase}/api/stats/analyze-click`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ asin }),
+    }).catch(() => {})
     try {
       const response = await analyzeProduct(asin);
       if (response.success && response.data) {

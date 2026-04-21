@@ -6,6 +6,7 @@ const router = Router()
 const DATA_DIR = path.join(process.cwd(), 'data')
 const VISITS_FILE = path.join(DATA_DIR, 'visits.json')
 const CLICKS_FILE = path.join(DATA_DIR, 'upgrade_clicks.json')
+const ANALYZE_FILE = path.join(DATA_DIR, 'analyze_clicks.json')
 
 interface Event {
   timestamp: string
@@ -54,6 +55,15 @@ router.post('/visit', (_req: Request, res: Response) => {
   res.json({ success: true })
 })
 
+// POST /api/stats/analyze-click — 记录开始分析点击
+router.post('/analyze-click', (req: Request, res: Response) => {
+  const { asin = '' } = req.body
+  const events = readFile(ANALYZE_FILE) as any[]
+  events.push({ timestamp: new Date().toISOString(), date: today(), asin })
+  writeFile(ANALYZE_FILE, events as Event[])
+  res.json({ success: true, total: events.length })
+})
+
 // POST /api/stats/upgrade-click — 记录付费意向点击
 router.post('/upgrade-click', (req: Request, res: Response) => {
   const { asin = '', language = 'zh' } = req.body
@@ -69,18 +79,21 @@ router.get('/dashboard', (_req: Request, res: Response) => {
   const days = lastNDays(30)
   const visitsByDate = groupByDate(readFile(VISITS_FILE))
   const clicksByDate = groupByDate(readFile(CLICKS_FILE))
+  const analyzeByDate = groupByDate(readFile(ANALYZE_FILE))
 
   const series = days.map(date => ({
     date,
     visits: visitsByDate[date] || 0,
     clicks: clicksByDate[date] || 0,
+    analyzeClicks: analyzeByDate[date] || 0,
   }))
 
   const totalVisits = readFile(VISITS_FILE).length
   const totalClicks = readFile(CLICKS_FILE).length
+  const totalAnalyzeClicks = readFile(ANALYZE_FILE).length
   const conversionRate = totalVisits > 0 ? ((totalClicks / totalVisits) * 100).toFixed(1) : '0.0'
 
-  res.json({ series, totalVisits, totalClicks, conversionRate })
+  res.json({ series, totalVisits, totalClicks, totalAnalyzeClicks, conversionRate })
 })
 
 export default router

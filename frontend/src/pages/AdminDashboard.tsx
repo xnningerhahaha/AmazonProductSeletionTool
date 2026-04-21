@@ -4,12 +4,14 @@ interface DayStat {
   date: string
   visits: number
   clicks: number
+  analyzeClicks: number
 }
 
 interface DashboardData {
   series: DayStat[]
   totalVisits: number
   totalClicks: number
+  totalAnalyzeClicks: number
   conversionRate: string
 }
 
@@ -40,8 +42,9 @@ export default function AdminDashboard() {
       <h1 className="text-2xl font-bold text-gray-800 mb-6">📊 数据看板</h1>
 
       {/* 汇总卡片 */}
-      <div className="grid grid-cols-3 gap-4 mb-8">
+      <div className="grid grid-cols-4 gap-4 mb-8">
         <StatCard label="总访问量" value={data.totalVisits} color="blue" icon="👥" />
+        <StatCard label="开始分析点击" value={data.totalAnalyzeClicks} color="purple" icon="🔍" />
         <StatCard label="升级点击" value={data.totalClicks} color="amber" icon="🔓" />
         <StatCard label="点击转化率" value={`${data.conversionRate}%`} color="green" icon="📈" />
       </div>
@@ -52,6 +55,7 @@ export default function AdminDashboard() {
         <canvas ref={canvasRef} width={900} height={300} className="w-full" />
         <div className="flex gap-6 mt-3 justify-center text-sm">
           <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-full bg-blue-500 inline-block" />每日访问</span>
+          <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-full bg-purple-500 inline-block" />开始分析</span>
           <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-full bg-amber-500 inline-block" />升级点击</span>
         </div>
       </div>
@@ -63,6 +67,7 @@ export default function AdminDashboard() {
             <tr>
               <th className="px-4 py-3 text-left">日期</th>
               <th className="px-4 py-3 text-right">访问量</th>
+              <th className="px-4 py-3 text-right">开始分析</th>
               <th className="px-4 py-3 text-right">升级点击</th>
               <th className="px-4 py-3 text-right">转化率</th>
             </tr>
@@ -72,6 +77,7 @@ export default function AdminDashboard() {
               <tr key={d.date} className="border-t border-gray-100 hover:bg-gray-50">
                 <td className="px-4 py-2 text-gray-700">{d.date}</td>
                 <td className="px-4 py-2 text-right text-blue-600 font-medium">{d.visits}</td>
+                <td className="px-4 py-2 text-right text-purple-600 font-medium">{d.analyzeClicks}</td>
                 <td className="px-4 py-2 text-right text-amber-600 font-medium">{d.clicks}</td>
                 <td className="px-4 py-2 text-right text-gray-500">
                   {d.visits > 0 ? `${((d.clicks / d.visits) * 100).toFixed(1)}%` : '-'}
@@ -90,6 +96,7 @@ function StatCard({ label, value, color, icon }: { label: string; value: number 
     blue: 'bg-blue-50 border-blue-200 text-blue-700',
     amber: 'bg-amber-50 border-amber-200 text-amber-700',
     green: 'bg-green-50 border-green-200 text-green-700',
+    purple: 'bg-purple-50 border-purple-200 text-purple-700',
   }
   return (
     <div className={`rounded-xl border p-5 ${colors[color]}`}>
@@ -153,6 +160,7 @@ function drawChart(canvas: HTMLCanvasElement, series: DayStat[]) {
   }
 
   drawLine('#3b82f6', d => d.visits)
+  drawLine('#a855f7', d => d.analyzeClicks)
   drawLine('#f59e0b', d => d.clicks)
 
   // X-axis labels (every 5 days)
